@@ -1,0 +1,101 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css.css">
+
+
+</head>
+<body>
+<div class="center">
+<div class="loader">
+    <img src="img/pac.gif" alt="Loading..." />
+</div>
+    <h1>Consols</h1>
+<div id="myBtnContainer">
+    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+    <button class="btn" onclick="filterSelection('nintendo')"> Nintendo</button>
+    <button class="btn" onclick="filterSelection('sony')"> Sony</button>
+    <button class="btn" onclick="filterSelection('microsoft')">Microsoft</button>
+</div>
+
+<div class="container">
+    <div class="filterDiv nintendo"><img src="img/nintendo1.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo2.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo3.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo4.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo5.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo6.jpg" width="100" height="100"></div>
+    <div class="filterDiv nintendo"><img src="img/nintendo7.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony1.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony2.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony3.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony4.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony5.jpg" width="100" height="100"></div>
+    <div class="filterDiv sony"><img src="img/sony6.jpg" width="100" height="100"></div>
+    <div class="filterDiv microsoft"><img src="img/microsoft1.jpg" width="100" height="100"></div>
+    <div class="filterDiv microsoft"><img src="img/microsoft2.jpg" width="100" height="100"></div>
+    <div class="filterDiv microsoft"><img src="img/microsoft3.jpg" width="100" height="100"></div>
+</div>
+
+
+</div>
+<script>
+    //preloader
+    window.addEventListener("load", function () {
+        const loader = document.querySelector(".loader");
+        loader.className += " hidden"; // class "loader hidden"
+    });
+
+    //filter
+    filterSelection("all")
+    function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
+        }
+    }
+
+    function AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {
+                element.className += " " + arr2[i];
+            }
+        }
+    }
+
+    function RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
+
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+
+
+</script>
+</body>
+
+
+
+
+</html>
